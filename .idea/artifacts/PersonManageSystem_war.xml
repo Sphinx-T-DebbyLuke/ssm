@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="PersonManageSystem:war">
+    <output-path>$PROJECT_DIR$/PersonManageSystem/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>PersonManageSystem</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="PersonManageSystem.war">
+      <element id="artifact" artifact-name="PersonManageSystem:war exploded" />
+    </root>
+  </artifact>
+</component>
