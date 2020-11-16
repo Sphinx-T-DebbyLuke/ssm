@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xj.Mapper.UserMapper">	
+	<sql id="cc">select * from user_inf</sql>
+
+	<select id="loginByUser" parameterType="User" resultType="User">
+		<include refid="cc"/> 
+		where loginname=#{loginname} and password=#{password}
+	</select>
+	<select id="getUserList" parameterType="PageSize" resultType="User">
+		<include refid="cc"/> 
+		<where>
+			<if test="loginname !=null and loginname !=''">
+				loginname like "%"#{loginname}"%"
+			</if>
+			<if test="username !=null and username !=''">
+				and username=#{username}
+			</if>
+		</where>
+		limit #{startRow},#{perPageSize}
+	</select>
+	<select id="totolUser" parameterType="PageSize" resultType="Integer">
+		select count(1) from user_inf 
+		<where>
+			<if test="loginname !=null and loginname !=''">
+				loginname like "%"#{loginname}"%"
+			</if>
+			<if test="username !=null and username !=''">
+				and username=#{username}
+			</if>
+		</where>
+	</select>
+	
+	<insert id="UserAdd" parameterType="User">
+		insert into user_inf(loginname,password,userstatus,createdate,username,emp_id) values(#{loginname},#{password},1,#{createdate},#{username},0)
+	</insert>
+	
+	<update id="updateByUserstatus" parameterType="User">
+		update user_inf set userstatus=#{userstatus} where id=#{id}
+	</update>
+	
+	<select id="getDymicUserStatus" resultType="User">
+		select id,userstatus from user_inf
+	</select>
+	
+	<select id="getUserById" parameterType="Integer" resultType="User">
+		select id,loginname,password,userstatus,createdate,username,emp_id,emp_name,checkNum  
+		from user_inf where id=#{value}
+	</select>
+	
+	<update id="updateUser" parameterType="User">
+		update user_inf set password=#{password},loginname=#{loginname}
+		<if test="username !=null">
+			,username=#{username}
+		</if>
+		<if test="emp !=null">
+		,emp_id=#{emp.id},emp_name=#{emp_name} 
+		</if>
+		where id=#{id}
+	</update>
+	
+	<delete id="deleteUserByList" parameterType="QueryVo">
+		delete from user_inf
+		<where>
+			id in
+			<foreach collection="ids" item="id" separator="," open="(" close=")">
+				#{id}
+			</foreach>
+		</where>
+	</delete>
+	
+	<select id="checkLoginnameRepeat" parameterType="String" resultType="User">
+		select id,loginname,password,userstatus,createdate,username 
+		from user_inf where loginname=#{value}
+	</select>
+	
+	<select id="getUserListIdName" resultType="User">
+		<include refid="cc"></include>
+	</select>
+	
+	<update id="UpdateSalary" parameterType="qiandao">
+		update user_inf set checkNum=#{nowdataString} where id=#{qiandaoNum}
+	</update>
+</mapper>

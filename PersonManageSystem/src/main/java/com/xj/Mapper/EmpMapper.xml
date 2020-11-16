@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xj.Mapper.EmpMapper">
+	<resultMap type="Employee" id="empDeptJob">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="card_id" column="card_id"/>
+		<result property="address" column="address"/>
+		<result property="post_code" column="post_code"/>
+		<result property="tel" column="tel"/>
+		<result property="phone" column="phone"/>
+		<result property="qq_num" column="qq_num"/>
+		<result property="email" column="email"/>
+		<result property="sex" column="sex"/>
+		<result property="party" column="party"/>
+		<result property="birthday" column="birthday"/>
+		<result property="race" column="race"/>
+		<result property="education" column="education"/>
+		<result property="speciality" column="speciality"/>
+		<result property="hobby" column="hobby"/>
+		<result property="remark" column="remark"/>
+		<result property="create_date" column="create_date"/>
+		<result property="imageUrl" column="imageUrl"/>
+		<result property="jobstatus" column="jobstatus"/>
+		<association property="job" javaType="Job">
+			<id property="id" column="job_id"/>
+			<result column="jname" property="name"/>
+			<result column="jremark" property="remark"/>
+			<result column="jsalary" property="salary"/>
+		</association>
+		<association property="dept" javaType="Dept">
+			<id property="id" column="dept_id"/>
+			<result column="dname" property="name"/>
+			<result column="dremark" property="remark"/>
+		</association>
+	</resultMap>
+
+	<select id="getEmpList" parameterType="PageSize" resultMap="empDeptJob">
+		select e.id,e.dept_id,e.job_id,e.name,e.card_id,e.address,e.post_code,e.tel,e.phone,
+		e.qq_num,e.email,e.sex,e.party,e.birthday,e.race,e.education,e.speciality,e.hobby,
+		e.remark,e.create_date,e.imageUrl,e.jobstatus,j.id,j.name as jname,j.remark as jremark,salary as jsalary,
+		d.id,d.name as dname,d.remark as dremark
+		from employee_inf e,job_inf j,dept_inf d
+		where e.job_id=j.id and e.dept_id=d.id 
+		<if test="emp !=null">
+			<if test="emp.getName() !=null and emp.getName() !=''">
+			and e.name like "%"#{emp.name}"%" 
+			</if>
+			<if test="emp.card_id !=null and emp.card_id !=''">
+				and e.card_id=#{emp.card_id} 
+			</if>
+			<if test="emp.jobstatus !=null">
+				and e.jobstatus=#{emp.jobstatus} 
+			</if>
+			<if test="emp.sex !=null">
+				and e.sex=#{emp.sex} 
+			</if>
+			<if test="emp.job.id !=null">
+				and e.job_id=#{emp.job.id} 
+			</if>
+			<if test="emp.dept.id !=null">
+				and e.dept_id=#{emp.dept.id} 
+			</if>
+		</if>
+		limit #{startRow},#{perPageSize}
+	</select>
+	
+	<select id="getTotolEmpNum" parameterType="PageSize" resultType="Integer">
+		select count(1) from employee_inf e,job_inf j,dept_inf d
+		where e.job_id=j.id and e.dept_id=d.id 
+		<if test="emp !=null">
+			<if test="emp.getName() !=null and emp.getName() !=''">
+			and e.name like "%"#{emp.name}"%" 
+			</if>
+			<if test="emp.card_id !=null and emp.card_id !=''">
+				and e.card_id=#{emp.card_id} 
+			</if>
+			<if test="emp.jobstatus !=null">
+				and e.jobstatus=#{emp.jobstatus} 
+			</if>
+			<if test="emp.sex !=null">
+				and e.sex=#{emp.sex} 
+			</if>
+			<if test="emp.job.id !=null">
+				and e.job_id=#{emp.job.id} 
+			</if>
+			<if test="emp.dept.id !=null">
+				and e.dept_id=#{emp.dept.id} 
+			</if>
+		</if>
+	</select>
+	
+	<insert id="EmpAdd" parameterType="Employee">
+		insert into employee_inf 
+		values(null,#{dept.id},#{job.id},#{name},#{card_id},#{address},#{post_code},
+		#{tel},#{phone},#{qq_num},#{email},#{sex},#{party},#{birthday},#{race},#{education},
+		#{speciality},#{hobby},#{remark},#{create_date},#{imageUrl},#{jobstatus})
+	</insert>
+	
+	<delete id="EmpDeleteByIds" parameterType="QueryVo">
+		delete from employee_inf
+		<where>
+			id in
+			<foreach collection="ids" item="id" separator="," open="(" close=")">
+				#{id}
+			</foreach>
+		</where>
+	</delete>
+	
+	<select id="CheckEmpById" parameterType="Integer" resultMap="empDeptJob">
+		select e.id,e.dept_id,e.job_id,e.name,e.card_id,e.address,e.post_code,e.tel,e.phone,
+		e.qq_num,e.email,e.sex,e.party,e.birthday,e.race,e.education,e.speciality,e.hobby,
+		e.remark,e.create_date,e.imageUrl,e.jobstatus,j.id,j.name as jname,j.remark as jremark,salary as jsalary,
+		d.id,d.name as dname,d.remark as dremark
+		from employee_inf e,job_inf j,dept_inf d
+		where e.job_id=j.id and e.dept_id=d.id and e.id=#{value}
+	</select>
+	
+	<update id="EmpUpdateByemp" parameterType="Employee">
+		update employee_inf 
+		set name=#{name},card_id=#{card_id},address=#{address},post_code=#{post_code},
+		tel=#{tel},phone=#{phone},qq_num=#{qq_num},email=#{email},sex=#{sex},
+		party=#{party},birthday=#{birthday},race=#{race},education=#{education},
+		speciality=#{speciality},hobby=#{hobby},remark=#{remark},imageUrl=#{imageUrl},jobstatus=#{jobstatus},
+		dept_id=#{dept.id},job_id=#{job.id}
+		where id=#{id}
+	</update>
+	
+	<select id="getallEmpidOrnameTobind" resultType="Employee">
+		select id,name from employee_inf 
+	</select>
+</mapper>

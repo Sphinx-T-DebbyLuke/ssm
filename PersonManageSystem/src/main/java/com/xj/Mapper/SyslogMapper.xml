@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xj.Mapper.SyslogMapper">
+	<resultMap type="Syslog" id="SyslogMap">
+		<id property="id" column="id"/>
+		<result property="log_type" column="log_type"/>
+		<result property="log_detail" column="log_detail"/>
+		<result property="create_date" column="create_date"/>
+		<association property="user" javaType="User">
+			<id property="id" column="uid"/>
+			<result property="loginname" column="loginname"/>
+			<result property="password" column="password"/>
+			<result property="userstatus" column="userstatus"/>
+			<result property="createdate" column="createdate"/>
+			<result property="username" column="username"/>
+			<result property="emp_id" column="emp_id"/>
+			<result property="emp_name" column="emp_name"/>
+		</association>
+	</resultMap>
+
+	<select id="getSyslogList" parameterType="PageSize" resultMap="SyslogMap">
+		select s.id,s.log_type,s.log_detail,s.create_date,s.user_id,
+		u.id as uid,u.loginname,u.password,u.userstatus,u.createdate,u.username,u.emp_id,u.emp_name 
+		from syslog_inf s,user_inf u
+		where s.user_id=u.id 
+		<if test="loginname !=null and loginname !=''">
+			and s.log_type=#{loginname} 
+		</if>
+		<if test="username !=null and username !=''">
+			and DATE_FORMAT(s.create_date,'%Y%m%d') = #{username} 
+		</if>
+		<if test="operateId !=null">
+			and s.user_id=#{operateId}
+		</if>
+		ORDER BY s.id DESC 
+		limit #{startRow},#{perPageSize}
+	</select>
+	
+	<insert id="addSyslog" parameterType="Syslog">
+		insert into syslog_inf values(null,#{log_type},#{log_detail},#{create_date},#{user.id})
+	</insert>
+	
+	<delete id="deleteSyslogByIds" parameterType="QueryVo">
+		delete from syslog_inf 
+		<where>
+			id in
+			<foreach collection="ids" item="id" separator="," open="(" close=")">
+				#{id}
+			</foreach>
+		</where> 
+	</delete>
+	
+	<select id="getTotalSyslog" parameterType="PageSize" resultType="Integer">
+		select count(1) from syslog_inf s,user_inf u 
+		where s.user_id=u.id 
+		<if test="loginname !=null and loginname !=''">
+			and s.log_type=#{loginname} 
+		</if>
+		<if test="username !=null and username !=''">
+			and DATE_FORMAT(s.create_date,'%Y%m%d') = #{username} 
+		</if>
+		<if test="operateId !=null">
+			and s.user_id=#{operateId}
+		</if>
+	</select>
+	
+	<select id="getSyslogtypeList" resultType="Syslog">
+		select * from syslog_inf
+	</select>
+</mapper>
