@@ -1,12 +1,11 @@
 package com.xj.interceptors;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.xj.HandleExceptions.MessageException;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.xj.HandleExceptions.MessageException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class UserInterceptor implements HandlerInterceptor{
 
@@ -23,7 +22,6 @@ public class UserInterceptor implements HandlerInterceptor{
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object obj) throws Exception {
 		String uri=req.getRequestURI();

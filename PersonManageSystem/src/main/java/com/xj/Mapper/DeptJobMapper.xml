@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xj.Mapper.DeptJobMapper">
+
+	<select id="getDeptJobList" parameterType="PageSize" resultType="Dept">
+		select * from ${tableName} 
+		<where>
+			<if test="loginname !=null and loginname !=''">
+				name like "%"#{loginname}"%"
+			</if>
+		</where>
+		limit #{startRow},#{perPageSize}
+	</select>
+	
+	<select id="getTotolDeptJob" parameterType="PageSize" resultType="Integer">
+		select count(1) from ${tableName}  
+		<where>
+			<if test="loginname !=null and loginname !=''">
+				name like "%"#{loginname}"%"
+			</if>
+		</where>
+	</select>
+	
+	<insert id="DeptJobAdd" parameterType="Dept">
+		insert into ${tableName}(name,remark) values(#{name},#{remark})
+	</insert>
+	
+	<select id="getDeptJobByTableName" parameterType="String" resultType="Dept">
+		select * from ${value}
+	</select>
+	
+	<select id="getDeptJobById" parameterType="Job" resultType="Job">
+		select id,name,remark<if test="tableName=='job_inf'">,salary</if> 
+		from ${tableName} where id=#{id}
+	</select>
+	
+	<update id="updateDeptJobInfo" parameterType="Job">
+		update ${tableName} set name=#{name},remark=#{remark}<if test="tableName=='job_inf'">,salary=#{salary}</if>  
+		where id=#{id}
+	</update>
+	
+	<delete id="deleteDeptJobByids" parameterType="QueryVo">
+		delete from ${tableName}
+		<where>
+			id in
+			<foreach collection="ids" item="id" separator="," open="(" close=")">
+				#{id}
+			</foreach>
+		</where>
+	</delete>
+</mapper>
