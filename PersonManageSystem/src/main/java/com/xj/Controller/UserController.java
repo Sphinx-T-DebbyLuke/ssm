@@ -107,7 +107,28 @@ public class UserController {
         }
         return "redirect:/login.jsp";
     }
-
+    //ajax动态获取用户在线状况
+    @RequestMapping(value="/getDymicStatus.action")
+    public @ResponseBody List<User> getDymicUserStatus(){
+        return user.getDymicUserStatus();
+    }
+    //ajax动态获取员工薪水
+    @RequestMapping(value="/getSalary.action")
+    public @ResponseBody qiandao getSalary(qiandao qq,HttpServletRequest req){
+        return user.getSalary(qq,req);
+    }
+    //ajax动态更新员工薪水
+    @RequestMapping(value="/UpdateSalary.action")
+    public String UpdateSalary(qiandao qq,HttpServletRequest req){
+        User u = (User) req.getSession().getAttribute("username");
+        qq.setQiandaoNum(u.getId());
+        try {
+            user.UpdateSalary(qq);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/User/getSalary.action?currentMon="+qq.getCurrentMon();
+    }
     //根据id查询用户
     @RequestMapping(value="/getUserById.action")
     public @ResponseBody User getUserById(Integer id){
@@ -178,4 +199,5 @@ public class UserController {
     public void GetCheckCode(HttpServletRequest req, HttpServletResponse resp){
         user.GetCheckCode(req, resp);
     }
+
 }
