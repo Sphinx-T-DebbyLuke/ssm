@@ -4,6 +4,7 @@ import com.xj.Mapper.EmpMapper;
 import com.xj.Mapper.UserMapper;
 import com.xj.POJO.*;
 import com.xj.Service.UserService;
+import com.xj.util.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -30,6 +31,9 @@ public class UserServiceImpl implements UserService {
 	private EmpMapper empmapper;
 	@Override
 	public User loginByUser(User u) {
+		if(u.getPassword()!=null||!"".equals(u.getPassword())){
+			u.setPassword(MD5.getMD5(u.getPassword()));
+		}
 		return user.loginByUser(u);
 	}
 	@Transactional(isolation=Isolation.DEFAULT,propagation=Propagation.REQUIRED,readOnly=true)
@@ -42,6 +46,9 @@ public class UserServiceImpl implements UserService {
 	public void UserAdd(User u) {
 		Date date=new Date();
 		u.setCreatedate(date);
+		if(u.getPassword()!=null||!"".equals(u.getPassword())){
+			u.setPassword(MD5.getMD5(u.getPassword()));
+		}
 		user.UserAdd(u);
 	}
 	@Override
@@ -58,6 +65,9 @@ public class UserServiceImpl implements UserService {
 	}
 	@Override
 	public void updateUser(User u) {
+		if(u.getPassword()!=null||!"".equals(u.getPassword())){
+			u.setPassword(MD5.getMD5(u.getPassword()));
+		}
 		user.updateUser(u);
 	}
 	@Override
