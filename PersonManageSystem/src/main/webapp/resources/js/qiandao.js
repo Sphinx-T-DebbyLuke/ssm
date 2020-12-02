@@ -1,5 +1,5 @@
 
-	$(function() {
+$(function() {
 		var pp=true;
 		window.setTimeout(function(){
 			signFun();
@@ -22,9 +22,7 @@
         	});
         });
 		function signFun() {
-
 	        var dateArray = $("#dataString").val().split(","); // 自定义一个数组，用于显示在列表上事先已经签到的日期
-
 	        var $dateBox = $("#js-qiandao-list"), //获取ul列表
 	            $currentDate = $(".current-date"), //用于显示当前时间
 	            $qiandaoBnt = $("#js-just-qiandao"), //获取右上侧签到按钮
@@ -62,8 +60,7 @@
 	        $(".date" + myDate.getDate()).addClass('able-qiandao');
 	        //这个是用于给当前li添加“可以签到”属性，下面的代码是假如当前li具备这个属性且右上侧的按钮处于可以点击状态，则可以直接在日历上点击进行签到
 	        if(pp){
-	        	
-	        	
+
 	        $dateBox.on("click", "li", function() {
 	                if ($(this).hasClass('able-qiandao') && _handle) {
 	                    $(this).addClass('qiandao');
@@ -108,27 +105,24 @@
             	});
             	
             	}//在列表上显示已经签到的状态
-	    };
+	    	};
 
-	    
-	    function openLayer(a, Fun) {
-	        $('.' + a).fadeIn(Fun);
-	    } //定义一个弹窗函数
+			function openLayer(a, Fun) {
+				$('.' + a).fadeIn(Fun);
+			} //定义一个弹窗函数
 
-	    var closeLayer = function() {
-	            $("body").on("click", ".close-qiandao-layer", function() {
-	                $(this).parents(".qiandao-layer").fadeOut()
-	            })
-	        }() //关闭弹窗按钮
+			var closeLayer = function() {
+				$("body").on("click", ".close-qiandao-layer", function() {
+					$(this).parents(".qiandao-layer").fadeOut()
+				})
+			}() //关闭弹窗按钮
 
-	    $("#js-qiandao-history").on("click", function() {
-	        openLayer("qiandao-history-layer", myFun);
-	        function myFun() {
-	            return
-	        } //已经签到的天数，点击显示弹窗
-	    });
-	        
-	        
+			$("#js-qiandao-history").on("click", function() {
+				openLayer("qiandao-history-layer", myFun);
+				function myFun() {
+					return
+				} //已经签到的天数，点击显示弹窗
+			});
 	        pp=false;
 		}
 });
