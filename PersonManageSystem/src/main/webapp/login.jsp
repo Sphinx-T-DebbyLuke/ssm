@@ -3,8 +3,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    
-    <title>My JSP 'index.jsp' starting page</title>
+
+    <title>人事管理登录页面</title>
 	<link href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css" rel="stylesheet"></link>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
@@ -90,11 +90,11 @@
 
   <body style="background-color: #3C3C3C;">
     <div class="container">
-    	
-    	
+
+
     	<div class="row">
     		<div class="col-md-2 col-sm-2">
-    			
+
     		</div>
     		<div class="col-md-8 col-sm-8 col-xs-12">
     			<div class="row">
@@ -102,15 +102,15 @@
     					<img alt="" src="${pageContext.request.contextPath }/resources/images/timg5.jpg" style="width: 750px;">
     				</div>
     				<div class="col-md-12 hidden-lg hidden-xs" style="height: 110px;">
-    					
+
     				</div>
     				<div class="col-md-12 col-xs-12">
-    					
-    					
+
+
     					<div class="jumbotron">
 					<div class="row" id="UserLoginPage">
 						<h2 class="visible-xs col-xs-offset-1" style="color:green;">人事管理登录页面</h2>
-						
+
 						<div class="col-md-12 col-lg-6 hidden-xs" style="height: 260px;">
 							<img alt="" class="visible-lg visible-sm" src="${pageContext.request.contextPath }/resources/images/timg4.jpg" style="width: 310px;height: 260px">
 							<img alt="" class="visible-md" src="${pageContext.request.contextPath }/resources/images/timg4.jpg" style="width: 520px;height: 260px">
@@ -132,7 +132,7 @@
     										<input type="text" class="form-control" name="username" placeholder="Verification Code" style="width: 180px;">
     									</div>
     									<div class="col-lg-5 col-md-5 col-sm-4 col-xs-4">
-    										<img src="${pageContext.request.contextPath }/User/GetCheckCode.action" data-toggle="tooltip" 
+    										<img src="${pageContext.request.contextPath }/User/GetCheckCode.action" data-toggle="tooltip"
     										title="看不清换一张？" data-placement="top" id="imgcheckcode" style="cursor: pointer;" class="img-thumbnail">
   										</div>
   									</div>
@@ -144,14 +144,14 @@
   								<c:if test="${error !=null}">
   								<div class="alert alert-warning alert-dismissible" role="alert">
   									<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  									<strong>Warning!</strong><font color="red"> ${error }</font> 
+  									<strong>Warning!</strong><font color="red"> ${error }</font>
 								</div>
   								</c:if>
 							</form>
-						</div>	
+						</div>
 					</div>
-					
-					
+
+
 					<!-- 用户注册 -->
 					<div class="row" id="UserRegisterPage" style="display: none;">
 						<div class="col-md-12 col-md-offset-0  col-lg-offset-0 col-lg-12 col-xs-offset-1 col-xs-10" style="background: url(${pageContext.request.contextPath }/images/page_bg.jpg);">
@@ -159,7 +159,7 @@
 						<form id="registerForm">
 						<div class="form-group">
     								<label for="exampleInputEmail1">登录名</label>
-    								<input type="text" class="form-control" id="toRegisterByloginname" placeholder="Username" name="loginname" 
+    								<input type="text" class="form-control" id="toRegisterByloginname" placeholder="Username" name="loginname"
     								 data-toggle="tooltip" data-placement="bottom">
   								</div>
   								<div class="form-group">
@@ -182,9 +182,9 @@
 								</form>
 							</div>
 					</div>
-					
-					
-					
+
+
+
 					<div class="row">
 						<div class="col-md-12">
 							<div style="padding-top: 50px;">
@@ -197,21 +197,21 @@
 						</div>
 					</div>
 				</div>
-    					
-    					
+
+
     				</div>
-    				
+
     			</div>
     		</div>
     		<div class="col-md-2 col-sm-2">
-    			
+
     		</div>
     	</div>
     </div>
-    
-    
-    
-    
+
+
+
+
     <div class="modal fade bs-example-modal-sm" id="errorDialog" tabindex="-1" role="dialog"
 		aria-labelledby="mySmallModalLabel">
 		<div class="modal-dialog modal-sm" role="document">

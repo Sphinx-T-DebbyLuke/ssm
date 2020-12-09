@@ -104,7 +104,6 @@ $(function(){
   		function(data){
     		$("#edit_id").val(data.id);
     		$("#edit_Name").val(data.loginname);
-    		$("#edit_password").val(data.password);
     		$("#edit_userstatus").val(data.userstatus);
     		$("#edit_createdate").val(data.createdateStr);
     		$("#edit_From>option[value='"+data.username+"']").prop("selected",true);

@@ -51,7 +51,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="updateUser" parameterType="User">
-		update user_inf set password=#{password},loginname=#{loginname}
+		update user_inf set loginname=#{loginname}
+		<if test="password !=null">
+			,password=#{password}
+		</if>
 		<if test="username !=null">
 			,username=#{username}
 		</if>

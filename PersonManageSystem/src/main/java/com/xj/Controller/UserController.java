@@ -25,6 +25,7 @@ public class UserController {
     private EmpService empservice;
     @Autowired
     private SyslogService logservice;
+
     //登录
     @RequestMapping(value="/login.action")
     public String loginUser(User u,HttpServletRequest req) throws MessageException {
@@ -34,11 +35,14 @@ public class UserController {
         if(checkCodeObject!=null){
             String checkCode2 =(String)checkCodeObject;
             if(checkCode.equalsIgnoreCase(checkCode2)){
+                String OraginPasswd=u.getPassword();
                 User u1=user.loginByUser(u);
                 if(u1==null){
                     throw new MessageException("用户名或密码错误!");
                 }else{
                     ss="index";
+                    //传入session中以原始密码的形式传入
+                    u1.setPassword(OraginPasswd);
                     req.getSession().setAttribute("username", u1);
                     u1.setUserstatus(2);
                     try {
@@ -153,11 +157,14 @@ public class UserController {
                 u.setEmp_name(null);
             }
         }
+        String OraginPasswd=u.getPassword();
         user.updateUser(u);
         if(u.getId()==u2.getId()){
             if(u.getUsername()==null||"".equals(u.getUsername())){
                 u.setUsername(u2.getUsername());
             }
+            //以未加密的密码存储
+            u.setPassword(OraginPasswd);
             req.getSession().setAttribute("username", u);
         }
         return "success";

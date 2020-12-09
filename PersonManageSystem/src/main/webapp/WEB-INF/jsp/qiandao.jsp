@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -27,11 +27,11 @@
 		<div id="wrapper">
 			<jsp:include page="top.jsp" />
 			<div id="otherPage">
-				
-				
-				
-	
-       
+
+
+
+
+
     <div class="row">
 <div class="qiandao-warp visible-lg">
 <input type="hidden" id="currentMon"/>
@@ -40,7 +40,7 @@
             <div class="qiandao-con clear">
                 <div class="qiandao-left">
                     <div class="qiandao-left-top clear">
-                        <div class="current-date">2016年1月6日</div>
+                        <div class="current-date">2020年1月1日</div>
                     </div>
                     <div class="qiandao-main" id="js-qiandao-main">
                         <ul class="qiandao-list" id="js-qiandao-list">
@@ -70,8 +70,8 @@
             </div>
         </div>
     </div>
-    
-    
+
+
     <!-- 签到 layer start -->
     <div class="qiandao-layer qiandao-active" >
         <div class="qiandao-layer-con qiandao-radius" style="height: 200px;">
@@ -83,7 +83,7 @@
     </div>
 
 
-        
+
     </div>
 
 

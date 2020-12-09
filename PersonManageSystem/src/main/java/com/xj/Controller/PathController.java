@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/Path")
 public class PathController {
     @RequestMapping(value = "/{pathUrl}")
-
     public String toPath(@PathVariable String pathUrl){
         return pathUrl;
     }

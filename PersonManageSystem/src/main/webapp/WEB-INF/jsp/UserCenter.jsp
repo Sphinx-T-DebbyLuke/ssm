@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -102,14 +102,14 @@ function showNotice(id){
 		<div id="wrapper">
 			<jsp:include page="top.jsp" />
 			<div id="otherPage">
-				
-				
-				
-	
+
+
+
+
        <h1 class="page-header">欢迎你！
        <c:if test="${sessionScope.username.emp_name==null}">${sessionScope.username.loginname}</c:if>
        <c:if test="${sessionScope.username.emp_name==''}">${sessionScope.username.loginname}</c:if>
-       <c:if test="${sessionScope.username.emp_name!=null}">${sessionScope.username.emp_name}</c:if>       
+       <c:if test="${sessionScope.username.emp_name!=null}">${sessionScope.username.emp_name}</c:if>
        </h1>
     <div class="row">
         <div class="col-sm-3 col-md-3 col-lg-3 hidden-xs" id="myScrollspy">
@@ -124,20 +124,20 @@ function showNotice(id){
   				<li role="presentation" class="active"><a id="foundation">基本信息</a></li>
   				<li role="presentation"><a id="changePassword">更改密码</a></li>
 			</ul>
-            
+
             <form action="" id="UserCenterInfo">
 			<div class="midleftdiv">
 			 	<div class="row">
 				<div class="form-group col-md-12" style="width: 100%;">
-						<label for="name">登录名</label> 
+						<label for="loginname">登录名</label>
 						<input type="text" class="form-control" id="loginname" value="${sessionScope.username.loginname}" name="loginname"/>
 				</div>
 				<div class="form-group col-md-12">
-						<label for="card_id">创建日期</label> 
+						<label for="createdate">创建日期</label>
 						<input type="text" class="form-control" readonly="readonly" id="createdate" value="${sessionScope.username.createdateStr}" name="createdate"/>
 				</div>
 				<div class="form-group col-md-12">
-						<label for="phone">角色</label>
+						<label for="username">角色</label>
 						<input type="text" class="form-control" readonly="readonly" id="username"
 						<c:if test="${sessionScope.username.emp_name==null}">value="${sessionScope.username.username}" name="username"</c:if>
 							   <c:if test="${sessionScope.username.emp_name==''}">value="${sessionScope.username.username}" name="username"</c:if>
@@ -151,16 +151,16 @@ function showNotice(id){
 			<div class="midrightdiv">
 			 	<div class="row" style="display: none;">
 				<div class="form-group col-md-12 col-lg-12">
-						<label for="name">当前密码</label> 
+						<label for="currentpassword">当前密码</label>
 						<input type="hidden" class="form-control" value="${sessionScope.username.password}" id="currentpassword"/>
 						<input type="text" class="form-control" id="currentpassword2"/>
 				</div>
 				<div class="form-group col-md-12 col-lg-12">
-						<label for="card_id">创建新密码</label> 
+						<label for="password">创建新密码</label>
 						<input type="password" class="form-control" id="password" name="password" />
 				</div>
 				<div class="form-group col-md-12 col-lg-12">
-						<label for="phone">重复新密码</label> 
+						<label for="password2">重复新密码</label>
 						<input type="password" class="form-control" id="password2"/>
 				</div>
 				<div class="form-group col-md-12 col-lg-12">
@@ -171,7 +171,7 @@ function showNotice(id){
 				</div>
 			</div>
 			</form>
-           
+
             <hr>
             <h2 id="section-2"><span class="glyphicon glyphicon-bell"></span>系统公告</h2>
             	<table class="table table-bordered table-striped table-hover" style="table-layout: fixed;">
@@ -181,7 +181,7 @@ function showNotice(id){
 									<th>公告日期</th>
 									<th>预览</th>
 								</tr>
-								
+
 							</thead>
 							<tbody>
 								<c:forEach items="${pageSize.noticelist}" var="row">
@@ -221,7 +221,7 @@ function showNotice(id){
       </a>
     </li>
   </c:if>
- 
+
   </ul>
 </nav>
 
@@ -239,11 +239,11 @@ function showNotice(id){
 					</button>
 				</div>
 				<div class="modal-body">
-					
-					<textarea rows="3" class="form-control" id="edit_content" placeholder="公告内容" 
+
+					<textarea rows="3" class="form-control" id="edit_content" placeholder="公告内容"
 					style="max-width: 555px;max-height: 320px;height: 320px;min-width:555px;opacity:0.7;position: relative;left: 8px;font-weight: bold;"></textarea>
 
-				
+
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal" style="position: relative;left: -6px;">关闭</button>
 				</div>

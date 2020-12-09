@@ -35,6 +35,8 @@ public class EmpController {
 	public String EmpList(PageSize pageSize,Model model){
 		try {
 			List<Employee> empList = empService.getEmpList(pageSize);
+			System.out.println("jobtableName:"+jobtableName);
+			System.out.println("depttableName:"+depttableName);
 			//用于前端下拉框显示
 			List<Dept> jobTableList = djService.getDeptJobByTableName(jobtableName);
 			List<Dept> deptTableList = djService.getDeptJobByTableName(depttableName);
@@ -112,6 +114,8 @@ public class EmpController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else{//直接修改
+			empService.EmpUpdateByemp(emp);
 		}
 		Syslog syslog=new Syslog("员工管理","修改了["+emp.getName()+"]的员工信息");
 		try {
