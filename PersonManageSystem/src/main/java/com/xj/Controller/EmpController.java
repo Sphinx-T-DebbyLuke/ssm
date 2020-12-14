@@ -35,8 +35,8 @@ public class EmpController {
 	public String EmpList(PageSize pageSize,Model model){
 		try {
 			List<Employee> empList = empService.getEmpList(pageSize);
-			System.out.println("jobtableName:"+jobtableName);
-			System.out.println("depttableName:"+depttableName);
+//			System.out.println("jobtableName:"+jobtableName);
+//			System.out.println("depttableName:"+depttableName);
 			//用于前端下拉框显示
 			List<Dept> jobTableList = djService.getDeptJobByTableName(jobtableName);
 			List<Dept> deptTableList = djService.getDeptJobByTableName(depttableName);

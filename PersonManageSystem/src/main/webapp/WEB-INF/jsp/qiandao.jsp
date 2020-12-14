@@ -33,54 +33,63 @@
 
 
     <div class="row">
-<div class="qiandao-warp visible-lg">
-<input type="hidden" id="currentMon"/>
-<input type="hidden" id="dataString"/>
-        <div class="qiandap-box">
-            <div class="qiandao-con clear">
-                <div class="qiandao-left">
-                    <div class="qiandao-left-top clear">
-                        <div class="current-date">2020年1月1日</div>
-                    </div>
-                    <div class="qiandao-main" id="js-qiandao-main">
-                        <ul class="qiandao-list" id="js-qiandao-list">
-                        </ul>
-                    </div>
-                </div>
-                <div class="qiandao-right">
-                    <div class="qiandao-top">
-                        <div class="just-qiandao qiandao-sprits" id="js-just-qiandao">
+        <c:if test="${username.emp_id==0}">
+            <div class="col-lg-12" style="height: 50px;"></div>
+            <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
+                <img src="${pageContext.request.contextPath}/resources/images/qiandao/haha.png" style="width: 100%;"/>
+            </div>
+        </c:if>
+        <c:if test="${username.emp_id!=0}">
+            <div class="qiandao-warp visible-lg">
+                <input type="hidden" id="currentMon"/>
+                <input type="hidden" id="dataString"/>
+                <div class="qiandap-box">
+                    <div class="qiandao-con clear">
+                        <div class="qiandao-left">
+                            <div class="qiandao-left-top clear">
+                                <div class="current-date">2020年1月1日</div>
+                            </div>
+                            <div class="qiandao-main" id="js-qiandao-main">
+                                <ul class="qiandao-list" id="js-qiandao-list">
+                                </ul>
+                            </div>
                         </div>
-                        <p class="qiandao-notic" id="qiandao-notic1" style="display: none;">今日已签到，请明日继续签到</p>
-                        <p class="qiandao-notic" id="qiandao-notic2">今日还未签到，请注意签到哦</p>
-                    </div>
-                    <div class="qiandao-bottom">
-                        <div class="qiandao-rule-list">
-                        	<br/>
-                        	<br/>
-                            <h4>该月共签到数：</h4>
-                            <p id="qiandaoNum"></p>
-                        </div>
-                        <div class="qiandao-rule-list">
-                            <h4>该月可获薪水约：</h4>
-                            <p id="salary"></p>
+                        <div class="qiandao-right">
+                            <div class="qiandao-top">
+                                <div class="just-qiandao qiandao-sprits" id="js-just-qiandao">
+                                </div>
+                                <p class="qiandao-notic" id="qiandao-notic1" style="display: none;">今日已签到，请明日继续签到</p>
+                                <p class="qiandao-notic" id="qiandao-notic2">今日还未签到，请注意签到哦</p>
+                            </div>
+                            <div class="qiandao-bottom">
+                                <div class="qiandao-rule-list">
+                                    <br/>
+                                    <br/>
+                                    <h4>该月共签到数：</h4>
+                                    <p id="qiandaoNum"></p>
+                                </div>
+                                <div class="qiandao-rule-list">
+                                    <h4>该月可获薪水约：</h4>
+                                    <p id="salary"></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
 
-    <!-- 签到 layer start -->
-    <div class="qiandao-layer qiandao-active" >
-        <div class="qiandao-layer-con qiandao-radius" style="height: 200px;">
-            <a href="javascript:;" class="close-qiandao-layer qiandao-sprits"></a>
-            <div class="yiqiandao clear">
-                <div class="yiqiandao-icon qiandao-sprits"></div>
+            <!-- 签到 layer start -->
+            <div class="qiandao-layer qiandao-active" >
+                <div class="qiandao-layer-con qiandao-radius" style="height: 200px;">
+                    <a href="javascript:;" class="close-qiandao-layer qiandao-sprits"></a>
+                    <div class="yiqiandao clear">
+                        <div class="yiqiandao-icon qiandao-sprits"></div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        </c:if>
+
 
 
 
