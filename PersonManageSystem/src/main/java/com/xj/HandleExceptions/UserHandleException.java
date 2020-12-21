@@ -1,10 +1,10 @@
 package com.xj.HandleExceptions;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class UserHandleException implements HandlerExceptionResolver{
 
@@ -18,7 +18,7 @@ public class UserHandleException implements HandlerExceptionResolver{
 			mv.addObject("error",me.getMsg() );
 		}else{
 			//未知异常
-			mv.addObject("error", "未知异常!");
+			mv.addObject("error", "网络超时!");
 		}
 		mv.setViewName("forward:/login.jsp");
 		return mv;

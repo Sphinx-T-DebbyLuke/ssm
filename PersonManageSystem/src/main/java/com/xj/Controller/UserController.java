@@ -48,6 +48,7 @@ public class UserController {
                     try {
                         user.updateByUserstatus(u1);
                     }catch (Exception e){
+                        e.printStackTrace();
                         throw new MessageException("更新用户状态错误");
                     }
                 }

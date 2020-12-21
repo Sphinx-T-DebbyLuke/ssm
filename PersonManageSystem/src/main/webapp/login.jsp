@@ -189,7 +189,7 @@
 						<div class="col-md-12">
 							<div style="padding-top: 50px;">
 								<font style="color: green;">
-								<center>Copyright ©  SSYG 2018, All Rights Reserved</center> <br>
+								<center>Copyright ©  SSYG 2020, All Rights Reserved</center> <br>
 		  						<center>Support:2690053948@qq.com &nbsp;&nbsp;&nbsp;&nbsp;  Facebook: MIKU WU &nbsp;
 							&nbsp;&nbsp;&nbsp;  Discord:Miku Wu#0853</center>
 								</font>
